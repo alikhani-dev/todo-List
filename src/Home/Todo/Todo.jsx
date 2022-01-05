@@ -15,14 +15,14 @@ const Todo = ({ id: key }) => {
 				<Card.Body className='mt-3'>
 					<Card.Text>{description} </Card.Text>
 				</Card.Body>
-				<Card.Footer className='text-end border-0 bg-transparent'>
+				<Card.Footer className={`text-end border-0 bg-transparent ${styles.footer}`}>
 					{completed ? (
-						<FiCheckCircle onClick={() => dispatch(todoToggle(id))} className={`p-1 ${styles.icon}`} size={30} />
+						<FiCheckCircle onClick={() => dispatch(todoToggle(id))} className='p-1' />
 					) : (
-						<FiCircle onClick={() => dispatch(todoToggle(id))} className={`p-1 ${styles.icon}`} size={30} />
+						<FiCircle onClick={() => dispatch(todoToggle(id))} className='p-1' />
 					)}
-					<FiEdit className={`p-1 me-1 ${styles.icon}`} size={30} />
-					<FiTrash onClick={() => dispatch(todoDeleted(id))} className={`p-1 ${styles.icon}`} size={30} />
+					<FiEdit className={`p-1 me-1`} />
+					<FiTrash onClick={() => dispatch(todoDeleted(id))} className='p-1' />
 				</Card.Footer>
 			</Card>
 		</Col>

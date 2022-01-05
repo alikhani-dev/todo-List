@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
+import produce from 'immer'
 
 const initialState = {
 	Tasks: {
@@ -13,36 +14,34 @@ const initialState = {
 	},
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = produce((state, action) => {
 	switch (action.type) {
 		case 'todos/Add': {
+			// TODO
 			const todo = action.payload
-			return { ...state, Tasks: { ...state.Tasks, [todo.id]: { ...todo, id: uuidv4(), completed: false } } }
+			const UUID = uuidv4()
+			state.Tasks[UUID] = { ...todo, id: UUID, completed: false }
+			break
 		}
 
 		case 'todos/Delete': {
 			const id = action.payload
-			const tasks = { ...state.Tasks }
-			delete tasks[id]
-			return { ...state, Tasks: { ...tasks } }
+			delete state.Tasks[id]
+			break
 		}
 
 		case 'todos/Toggle': {
 			const id = action.payload
-			const todo = state.Tasks[id]
-			return {
-				...state,
-				Tasks: { ...state.Tasks, [id]: { ...todo, completed: !todo.completed } },
-			}
+			state.Tasks[id].completed = !state.Tasks[id].completed
+			break
 		}
 
-		case 'todos/Update':
-			return
-
-		default:
-			return state
+		case 'todos/Update': {
+			break
+		}
 	}
-}
+}, initialState)
+
 export default reducer
 
 export const selectTasks = (state) => state.tasks.Tasks
