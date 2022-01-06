@@ -4,14 +4,14 @@
 - [ ] Edit Todo
 - [x] Delete Todo
 - [x] Show Task list
-- [ ] Filter Todo
+- [x] Filter Todo by ( color & status)
 - [ ] Clear All Tasks
 - [x] Responsive
 - [ ] Save on localStorage
 
 ## Tech Stack
 
-**Client:** React, Bootstrap , Redux
+**Client:** React, Bootstrap , Redux (using immer)
 
 ## Contact US
 
