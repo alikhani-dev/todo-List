@@ -1,12 +1,12 @@
 import { Form } from 'react-bootstrap'
+import { colors } from '../../Todo/todoSlice'
 import Color from './Color'
 
 const Colors = () => {
-	const colors = ['secondary', 'dark', 'primary', 'info', 'success', 'danger', 'warning']
 	return (
 		<Form>
 			{colors.map((color) => (
-				<Color key={color} color={color} />
+				<Color key={color[0]} color={color} />
 			))}
 		</Form>
 	)

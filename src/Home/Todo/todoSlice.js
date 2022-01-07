@@ -2,6 +2,16 @@ import { v4 as uuidv4 } from 'uuid'
 import produce from 'immer'
 import { getColors, getStatus } from '../Filter/filterSlice'
 
+export const colors = [
+	['secondary', 'gray'],
+	['dark', 'black'],
+	['primary', 'Blue Dress'],
+	['info', 'blue'],
+	['success', 'green'],
+	['danger', 'red'],
+	['warning', 'orange'],
+]
+
 const initialState = {
 	Tasks: {
 		1: { id: 1, header: '1', description: 'Deign ui', completed: true, color: 'secondary' },
@@ -11,7 +21,6 @@ const initialState = {
 		5: { id: 5, header: '5', description: 'Complete patterns', completed: false, color: 'success' },
 		6: { id: 6, header: '5', description: 'Complete patterns', completed: false, color: 'danger' },
 		7: { id: 7, header: '5', description: 'Complete patterns', completed: false, color: 'warning' },
-		8: { id: 8, header: '5', description: 'Complete patterns', completed: false },
 	},
 }
 
