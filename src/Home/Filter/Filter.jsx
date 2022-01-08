@@ -1,6 +1,7 @@
 import { Accordion } from 'react-bootstrap'
 import Color from './Color'
 import Status from './Status'
+import Actions from './Actions'
 
 const Filter = () => {
 	return (
@@ -19,6 +20,7 @@ const Filter = () => {
 					</Accordion.Body>
 				</Accordion.Item>
 			</Accordion>
+			<Actions />
 		</>
 	)
 }

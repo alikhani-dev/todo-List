@@ -47,6 +47,24 @@ const reducer = produce((state, action) => {
 		}
 
 		case 'todos/Update': {
+			const payload = action.payload
+			state.Tasks[payload.id] = payload
+			break
+		}
+
+		case 'todo/AllComplected': {
+			Object.values(state.Tasks).forEach((todo) => {
+				todo.completed = true
+			})
+			break
+		}
+
+		case 'todo/RemoveAllComplected': {
+			Object.values(state.Tasks).forEach(({ completed, id }) => {
+				if (completed) {
+					delete state.Tasks[id]
+				}
+			})
 			break
 		}
 	}
@@ -58,11 +76,13 @@ export default reducer
 export const todoAdded = (payload) => ({ type: 'todos/Add', payload })
 export const todoDeleted = (id) => ({ type: 'todos/Delete', payload: id })
 export const todoToggle = (id) => ({ type: 'todos/Toggle', payload: id })
+export const todoUpdate = (payload) => ({ type: 'todo/Update', payload })
+export const todoAllComplected = () => ({ type: 'todo/AllComplected' })
+export const todoRemoveAllComplected = () => ({ type: 'todo/RemoveAllComplected' })
 
 // get state
 export const selectTasks = (state) => state.tasks.Tasks
 export const selectIds = (state) => Object.keys(state.tasks.Tasks)
-
 export const filterTodos = (state) => {
 	const colors = getColors(state)
 	const status = getStatus(state)

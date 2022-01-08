@@ -5,7 +5,8 @@
 - [x] Delete Todo
 - [x] Show Task list
 - [x] Filter Todo by ( color & status)
-- [ ] Clear All Tasks
+- [x] Clear All Tasks
+- [x] Remove All Tasks complected
 - [x] Responsive
 - [ ] Save on localStorage
 
