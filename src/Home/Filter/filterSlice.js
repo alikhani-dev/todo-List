@@ -1,8 +1,14 @@
 import produce from 'immer'
 
+export const actions = {
+	All: 'All',
+	Complected: 'Complected',
+	Pending: 'Pending',
+}
+
 const initialState = {
 	colors: [],
-	status: 'All',
+	status: actions.All,
 }
 
 const reducer = produce((state, action) => {
@@ -33,3 +39,7 @@ export const changeStatus = (status) => ({ type: 'filter/changeStatus', payload:
 // get state
 export const getStatus = (state) => state.filter.status
 export const getColors = (state) => state.filter.colors
+
+// get  Actions value & key
+export const getActionsValue = Object.values(actions)
+export const getActionsKeys = Object.keys(actions)

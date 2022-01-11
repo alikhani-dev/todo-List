@@ -1,3 +1,9 @@
 .wrapper label {
 	text-transform: capitalize;
 }
+.label {
+	padding: 1px 6px;
+	display: inline-block;
+	border-radius: 6px;
+	color: #fff;
+}

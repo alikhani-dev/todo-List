@@ -5,8 +5,8 @@ import Color from './Color'
 const Colors = () => {
 	return (
 		<Form>
-			{colors.map((color) => (
-				<Color key={color[0]} color={color} />
+			{colors.map(({ bg, name }) => (
+				<Color key={name} color={bg} />
 			))}
 		</Form>
 	)

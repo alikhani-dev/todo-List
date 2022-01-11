@@ -1,15 +1,14 @@
 import { Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeStatus, getStatus } from '../filterSlice'
+import { changeStatus, getStatus, getActionsValue } from '../filterSlice'
 
 const Status = () => {
-	const status = ['All', 'Complected', 'Pending']
 	const dispatch = useDispatch()
 	const checked = useSelector(getStatus)
 
     return (
 		<>
-			{status.map((item) => (
+			{getActionsValue.map((item) => (
 				<Form.Check
 					onChange={() => dispatch(changeStatus(item))}
 					checked={checked === item}

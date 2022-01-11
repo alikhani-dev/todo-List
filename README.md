@@ -1,7 +1,11 @@
+## Preview
+
+![Preview](https://user-images.githubusercontent.com/87765316/148807096-c4407361-cee6-4f76-ba01-de2fc024091f.gif)
+
 ## Features
 
 - [x] Add Todo
-- [ ] Edit Todo
+- [x] Edit Todo
 - [x] Delete Todo
 - [x] Show Task list
 - [x] Filter Todo by ( color & status)

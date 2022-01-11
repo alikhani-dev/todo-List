@@ -8,3 +8,8 @@
 	width: 30px;
 	height: 30px;
 }
+
+.TODO {
+	height: 65px;
+	overflow: hidden;
+}
