@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import produce from 'immer'
 import { getColors, getStatus, actions } from '../Filter/filterSlice'
+import { createSelector } from 'reselect'
 
 export const colors = [
 	{ bg: 'secondary', name: 'gray' },
@@ -77,10 +78,9 @@ export const todoRemoveAllComplected = () => ({ type: 'todo/RemoveAllComplected'
 // get state
 export const selectTasks = (state) => state.tasks.Tasks
 export const selectIds = (state) => Object.keys(state.tasks.Tasks)
-export const filterTodos = (state) => {
-	const colors = getColors(state)
-	const status = getStatus(state)
-	const todos = Object.values(selectTasks(state))
+const selectTaskValues = (state) => Object.values(selectTasks(state))
+
+export const filterTodos = createSelector(getColors, getStatus, selectTaskValues, (colors, status, todos) => {
 	let newTodo = []
 
 	if (status === actions.All) {
@@ -97,4 +97,6 @@ export const filterTodos = (state) => {
 	}
 
 	return newTodo.map((item) => item.id)
-}
+})
+
+export const countTask = createSelector(selectIds, (task) => task.length)

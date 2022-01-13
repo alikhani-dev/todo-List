@@ -1,19 +1,21 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import { shallowEqual, useSelector } from 'react-redux'
-import { filterTodos } from './Todo/todoSlice'
+import { countTask, filterTodos } from './Todo/todoSlice'
 import Header from './Header'
 import Filter from './Filter'
 import Todo from './Todo'
 
 const Home = () => {
 	const tasks = useSelector(filterTodos, shallowEqual)
+	const count = useSelector(countTask)
+	const title = count > 0 ? `Remaining Todos : ${count} ` : 'All complected'
 
 	return (
 		<>
 			<Header />
 			<Container className='mt-4'>
 				<main>
-					<h3 className='mb-4'>All Task</h3>
+					<h3 className='mb-4'>{title}</h3>
 					<Row>
 						<Col className='mb-4 mb-md-0' xs={12} sm={5} md={4} lg={3} xl={2}>
 							<Filter />

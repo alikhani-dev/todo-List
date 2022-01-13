@@ -16,7 +16,7 @@
 
 ## Tech Stack
 
-**Client:** React, Bootstrap , Redux (using immer)
+**Client:** React, Bootstrap , Redux (using immer & reselect)
 
 ## Contact US
 
