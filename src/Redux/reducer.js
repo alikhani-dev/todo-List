@@ -1,10 +1,9 @@
-import { combineReducers } from 'redux'
-import tasksReducer from '../Home/Todo/todoSlice'
-import filterReducer from '../Home/Filter/filterSlice'
+import taskSlice from '../Home/Todo/todoSlice'
+import filterSlice from '../Home/Filter/filterSlice'
 
-const rootReducer = combineReducers({
-	tasks: tasksReducer,
-	filter: filterReducer,
-})
+const rootReducer = {
+	tasks: taskSlice,
+	filter: filterSlice,
+}
 
 export default rootReducer

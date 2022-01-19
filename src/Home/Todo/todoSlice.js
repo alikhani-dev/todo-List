@@ -1,7 +1,6 @@
-import { v4 as uuidv4 } from 'uuid'
-import produce from 'immer'
 import { getColors, getStatus, actions } from '../Filter/filterSlice'
 import { createSelector } from 'reselect'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 export const colors = [
 	{ bg: 'secondary', name: 'gray' },
@@ -19,67 +18,12 @@ const initialState = {
 	},
 }
 
-const reducer = produce((state, action) => {
-	// eslint-disable-next-line default-case
-	switch (action.type) {
-		case 'todos/Add': {
-			const todo = action.payload
-			const UUID = uuidv4()
-			state.Tasks[UUID] = { ...todo, id: UUID, completed: false }
-			break
-		}
-
-		case 'todos/Delete': {
-			const id = action.payload
-			delete state.Tasks[id]
-			break
-		}
-
-		case 'todos/Toggle': {
-			const id = action.payload
-			state.Tasks[id].completed = !state.Tasks[id].completed
-			break
-		}
-
-		case 'todos/Update': {
-			const { id, data } = action.payload
-			state.Tasks[id] = { ...state.Tasks[id], ...data }
-			break
-		}
-
-		case 'todo/AllComplected': {
-			Object.values(state.Tasks).forEach((todo) => {
-				todo.completed = true
-			})
-			break
-		}
-
-		case 'todo/RemoveAllComplected': {
-			Object.values(state.Tasks).forEach(({ completed, id }) => {
-				if (completed) {
-					delete state.Tasks[id]
-				}
-			})
-			break
-		}
-	}
-}, initialState)
-
-export default reducer
-
-// actions
-export const todoAdded = (payload) => ({ type: 'todos/Add', payload })
-export const todoDeleted = (id) => ({ type: 'todos/Delete', payload: id })
-export const todoToggle = (id) => ({ type: 'todos/Toggle', payload: id })
-export const todoUpdate = (id, data) => ({ type: 'todos/Update', payload: { id, data } })
-export const todoAllComplected = () => ({ type: 'todo/AllComplected' })
-export const todoRemoveAllComplected = () => ({ type: 'todo/RemoveAllComplected' })
-
 // get state
 export const selectTasks = (state) => state.tasks.Tasks
 export const selectIds = (state) => Object.keys(state.tasks.Tasks)
 const selectTaskValues = (state) => Object.values(selectTasks(state))
 
+export const countTask = createSelector(selectIds, (task) => task.length)
 export const filterTodos = createSelector(getColors, getStatus, selectTaskValues, (colors, status, todos) => {
 	let newTodo = []
 
@@ -99,4 +43,51 @@ export const filterTodos = createSelector(getColors, getStatus, selectTaskValues
 	return newTodo.map((item) => item.id)
 })
 
-export const countTask = createSelector(selectIds, (task) => task.length)
+const reducer = createSlice({
+	name: 'todo',
+	initialState,
+	reducers: {
+		todoToggle(state, action) {
+			const id = action.payload
+			state.Tasks[id].completed = !state.Tasks[id].completed
+		},
+		todoDeleted(state, action) {
+			const id = action.payload
+			delete state.Tasks[id]
+		},
+		todoAllComplected(state) {
+			Object.values(state.Tasks).forEach((todo) => {
+				todo.completed = true
+			})
+		},
+		todoRemoveAllComplected(state) {
+			Object.values(state.Tasks).forEach(({ completed, id }) => {
+				if (completed) {
+					delete state.Tasks[id]
+				}
+			})
+		},
+		todoUpdate: {
+			reducer(state, action) {
+				const { id, data } = action.payload
+				state.Tasks[id] = { ...state.Tasks[id], ...data }
+			},
+			prepare(id, data) {
+				return { payload: { id, data } }
+			},
+		},
+		todoAdded: {
+			reducer(state, action) {
+				const todo = action.payload
+				state.Tasks[todo.id] = todo
+			},
+			prepare(todo) {
+				return { payload: { ...todo, id: nanoid(5), completed: false } }
+			},
+		},
+	},
+})
+export const { todoToggle, todoDeleted, todoAllComplected, todoRemoveAllComplected, todoUpdate, todoAdded } =
+	reducer.actions
+
+export default reducer.reducer
