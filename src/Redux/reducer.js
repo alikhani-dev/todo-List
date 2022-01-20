@@ -1,8 +1,8 @@
-import taskSlice from '../Home/Todo/todoSlice'
+import todoSlice from '../Home/Todo/todoSlice'
 import filterSlice from '../Home/Filter/filterSlice'
 
 const rootReducer = {
-	tasks: taskSlice,
+	todos: todoSlice,
 	filter: filterSlice,
 }
 

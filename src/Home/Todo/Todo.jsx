@@ -4,9 +4,10 @@ import { EditTodo } from '../Modal'
 import { useState } from 'react'
 import styles from './style.module.css'
 import Actions from './Actions'
+import { selectTaskByKey } from './todoSlice'
 
 const Todo = ({ id: key }) => {
-	const { header, description, completed, id, color } = useSelector((state) => state.tasks.Tasks[key])
+	const { header, description, completed, id, color } = useSelector(selectTaskByKey(key))
 	const [modalShow, setModalShow] = useState(false)
 	const handelModal = () => setModalShow((prev) => !prev)
 

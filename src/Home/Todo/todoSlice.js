@@ -19,8 +19,9 @@ const initialState = {
 }
 
 // get state
-export const selectTasks = (state) => state.tasks.Tasks
-export const selectIds = (state) => Object.keys(state.tasks.Tasks)
+export const selectTaskByKey = (key) => (state) => state.todos.Tasks[key]
+export const selectTasks = (state) => state.todos.Tasks
+export const selectIds = (state) => Object.keys(state.todos.Tasks)
 const selectTaskValues = (state) => Object.values(selectTasks(state))
 
 export const countTask = createSelector(selectIds, (task) => task.length)

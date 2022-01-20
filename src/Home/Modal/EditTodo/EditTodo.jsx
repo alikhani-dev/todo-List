@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Col, Modal, Row } from 'react-bootstrap'
 import { Button, Form } from 'react-bootstrap'
-import { colors, todoUpdate } from '../../Todo/todoSlice'
+import { colors, selectTaskByKey, todoUpdate } from '../../Todo/todoSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import Toast from '../../Toast'
 
 const EditTodo = ({ id, onHide, show }) => {
-	const { header, description, color } = useSelector((state) => state.tasks.Tasks[id])
+	const { header, description, color } = useSelector(selectTaskByKey(id))
 	const [fields, setFields] = useState({ header, description, color })
 	const [toast, setToast] = useState({ status: false, text: '' })
 	const dispatch = useDispatch()
