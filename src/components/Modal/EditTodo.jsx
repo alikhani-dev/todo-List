@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Col, Modal, Row } from 'react-bootstrap'
 import { Button, Form } from 'react-bootstrap'
-import { colors, selectTaskByKey, todoUpdate } from '../../Todo/todoSlice'
+import { colors, selectTaskByKey, todoUpdate } from '../Todo/todoSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import Toast from '../../Toast'
+import Toast from '../Toast/Toast'
 
 const EditTodo = ({ id, onHide, show }) => {
 	const { header, description, color } = useSelector(selectTaskByKey(id))

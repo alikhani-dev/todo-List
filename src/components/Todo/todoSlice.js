@@ -90,5 +90,4 @@ const reducer = createSlice({
 })
 export const { todoToggle, todoDeleted, todoAllComplected, todoRemoveAllComplected, todoUpdate, todoAdded } =
 	reducer.actions
-
 export default reducer.reducer

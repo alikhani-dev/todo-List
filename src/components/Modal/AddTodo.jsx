@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Col, Modal, Row } from 'react-bootstrap'
 import { Button, Form } from 'react-bootstrap'
-import { colors, todoAdded } from '../../Todo/todoSlice'
+import { colors, todoAdded } from '../Todo/todoSlice'
 import { useDispatch } from 'react-redux'
-import Toast from '../../Toast'
+import Toast from '../Toast/Toast'
 
 const AddTodo = ({ onHide, show }) => {
 	const [fields, setFields] = useState({ header: '', description: '', color: 'secondary' })

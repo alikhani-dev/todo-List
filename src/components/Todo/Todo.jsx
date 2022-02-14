@@ -1,10 +1,10 @@
 import { Card, Col } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import { EditTodo } from '../Modal'
 import { useState } from 'react'
-import styles from './style.module.css'
-import Actions from './Actions'
 import { selectTaskByKey } from './todoSlice'
+import Actions from './Actions'
+import EditTodo from '../Modal/EditTodo'
+import styles from './style.module.css'
 
 const Todo = ({ id: key }) => {
 	const { header, description, completed, id, color } = useSelector(selectTaskByKey(key))

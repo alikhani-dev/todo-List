@@ -1,5 +1,5 @@
-import todoSlice from '../Home/Todo/todoSlice'
-import filterSlice from '../Home/Filter/filterSlice'
+import todoSlice from '../components/Todo/todoSlice'
+import filterSlice from '../components/Filter/filterSlice'
 
 const rootReducer = {
 	todos: todoSlice,

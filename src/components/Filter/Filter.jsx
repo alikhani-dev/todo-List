@@ -1,6 +1,6 @@
 import { Accordion } from 'react-bootstrap'
-import Color from './Color'
-import Status from './Status'
+import Color from './Color/Colors'
+import Status from './Status/Status'
 import Actions from './Actions'
 
 const Filter = () => {

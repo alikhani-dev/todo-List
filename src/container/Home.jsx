@@ -1,9 +1,9 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import { shallowEqual, useSelector } from 'react-redux'
-import { countTask, filterTodos } from './Todo/todoSlice'
-import Header from './Header'
-import Filter from './Filter'
-import Todo from './Todo'
+import { countTask, filterTodos } from '../components/Todo/todoSlice'
+import Header from '../components/Header/Header'
+import Filter from '../components/Filter/Filter'
+import Todo from '../components/Todo/Todo'
 
 const Home = () => {
 	const tasks = useSelector(filterTodos, shallowEqual)
