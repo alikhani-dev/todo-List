@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 import { FiEdit, FiTrash, FiCheckCircle, FiCircle } from 'react-icons/fi'
-import { useDispatch } from 'react-redux'
+// redux :
+import { useAppDispatch } from '../../redux'
 import { taskDeleted, taskToggle } from '../../redux/reducer/todoSlice'
 
 type Props = { id: string; completed: boolean; handelModal: () => void }
 
 const Actions: FC<Props> = ({ id, completed, handelModal }) => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	return (
 		<>

@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import { taskAllComplected, taskRemoveAllComplected } from '../../redux/reducer/todoSlice'
 // UI :
 import { Button } from 'react-bootstrap'
+import { useAppDispatch } from '../../redux'
 
 const Actions: FC = () => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	return (
 		<>
