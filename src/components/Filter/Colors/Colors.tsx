@@ -1,0 +1,32 @@
+import React, { FC } from 'react'
+import { Form } from 'react-bootstrap'
+import { Color, useAppDispatch } from '../../../redux'
+import { changeColor } from '../../../redux/reducer/filterSlice'
+import { colors } from '../../../redux/reducer/todoSlice'
+import style from './style.module.scss'
+
+type Props = { color: Color }
+
+const ColorComponent: FC<Props> = ({ color }) => {
+	const dispatch = useAppDispatch()
+	return (
+		<div className={`mb-3 ${style.wrapper}`}>
+			<Form.Check
+				id={color}
+				type='checkbox'
+				onClick={() => dispatch(changeColor(color))}
+				label={<span className={`${style.label} bg-${color}`}>{color}</span>}
+			/>
+		</div>
+	)
+}
+
+const Colors: FC = () => (
+	<Form>
+		{colors.map(({ bg, name }) => (
+			<ColorComponent key={name} color={bg} />
+		))}
+	</Form>
+)
+
+export default Colors

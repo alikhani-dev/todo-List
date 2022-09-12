@@ -1,40 +1,36 @@
-import { useState } from 'react'
+import React, { useState, FC, ChangeEvent } from 'react'
+import { colors, taskAdded } from '../../redux/reducer/todoSlice'
+// components :
+import Toast from '../Toast/Toast'
+// styles & UI :
 import { Col, Modal, Row } from 'react-bootstrap'
 import { Button, Form } from 'react-bootstrap'
-import { colors, todoAdded } from '../Todo/todoSlice'
-import { useDispatch } from 'react-redux'
-import Toast from '../Toast/Toast'
+import { Color, useAppDispatch } from '../../redux'
 
-const AddTodo = ({ onHide, show }) => {
-	const [fields, setFields] = useState({ header: '', description: '', color: 'secondary' })
-	const [toast, setToast] = useState({
-		status: false,
-		text: '',
-	})
-	const dispatch = useDispatch()
+type ToastState = { text: string; status: boolean; color: Color }
+type FieldsState = { header: string; description: string; color: Color }
 
-	const handelChange = ({ target }) => {
+export type AddModalProps = { onHide: () => void; show: boolean }
+
+const AddTodo: FC<AddModalProps> = ({ onHide, show }) => {
+	const [fields, setFields] = useState<FieldsState>({ header: '', description: '', color: 'secondary' })
+	const [toast, setToast] = useState<ToastState>({ status: false, text: '', color: 'secondary' })
+	const dispatch = useAppDispatch()
+
+	const handelChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		setFields({ ...fields, [target.name]: target.value })
 	}
 
 	const saveTask = () => {
 		const { header, description } = fields
 		if (header.length !== 0 && description.length !== 0) {
-			dispatch(todoAdded(fields))
-			setFields({ header: '', description: '' })
+			dispatch(taskAdded(fields))
+			setFields({ header: '', description: '', color: 'secondary' })
 			onHide()
-			setToast({
-				status: true,
-				text: 'Success',
-				color: 'primary',
-			})
+			setToast({ status: true, text: 'Success', color: 'primary' })
 		} else {
 			onHide()
-			setToast({
-				status: true,
-				text: 'Please Enter all field',
-				color: 'danger',
-			})
+			setToast({ status: true, text: 'Please Enter all field', color: 'danger' })
 		}
 	}
 
@@ -50,7 +46,7 @@ const AddTodo = ({ onHide, show }) => {
 				color={toast.color}
 				text={toast.text}
 				show={toast.status}
-				hide={() => setToast((prevState) => ({ ...prevState, status: false }))}
+				hide={() => setToast(prevState => ({ ...prevState, status: false }))}
 			/>
 			<Modal onHide={onHide} show={show} aria-labelledby='contained-modal-title-vcenter' centered>
 				<Modal.Header closeButton>
@@ -74,7 +70,8 @@ const AddTodo = ({ onHide, show }) => {
 							<Col xs={4}>
 								<Form.Group>
 									<Form.Label>Color</Form.Label>
-									<Form.Select value={fields.color} name='color' onChange={handelChange}>
+									{/* @ts-ignore */}
+									<Form.Select value={fields.color} name='color' onSelect={e => console.log(e)} onChange={handelChange}>
 										{option}
 									</Form.Select>
 								</Form.Group>
@@ -83,11 +80,11 @@ const AddTodo = ({ onHide, show }) => {
 						<Form.Group className='my-3'>
 							<Form.Label>Description</Form.Label>
 							<Form.Control
-								name='description'
-								value={fields.description}
-								onChange={handelChange}
-								as='textarea'
 								rows={3}
+								as='textarea'
+								name='description'
+								onChange={handelChange}
+								value={fields.description}
 								placeholder='Enter Description ...'
 							/>
 						</Form.Group>

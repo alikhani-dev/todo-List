@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import React from 'react'
+import { FC, useState } from 'react'
+// styles & UI :
+import styles from './style.module.scss'
 import { Button } from 'react-bootstrap'
+// components :
 import AddTodo from '../Modal/AddTodo'
-import styles from './style.module.css'
 
-const Header = () => {
+const Header: FC = () => {
 	const [modalShow, setModalShow] = useState(false)
-	const handelModal = () => setModalShow((prev) => !prev)
+	const handelModal = () => setModalShow(prev => !prev)
 
 	return (
-		<div className={`text-center  py-5 ${styles.wrapper}`}>
+		<div className={`text-center py-5 ${styles.wrapper}`}>
 			<h2 className='pb-4'>TODO List</h2>
 			<Button variant='primary' onClick={handelModal}>
 				Create Task

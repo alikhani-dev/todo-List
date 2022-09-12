@@ -1,39 +1,36 @@
-import { useState } from 'react'
-import { Col, Modal, Row } from 'react-bootstrap'
-import { Button, Form } from 'react-bootstrap'
-import { colors, selectTaskByKey, todoUpdate } from '../Todo/todoSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, FC, ChangeEvent } from 'react'
+// UI
+import { Col, Modal, Row, Button, Form } from 'react-bootstrap'
+// components :
 import Toast from '../Toast/Toast'
+import { colors, selectTaskByKey, taskUpdate } from '../../redux/reducer/todoSlice'
+import { Color, useAppDispatch, useAppSelector } from '../../redux'
 
-const EditTodo = ({ id, onHide, show }) => {
-	const { header, description, color } = useSelector(selectTaskByKey(id))
+type Props = { id: string; onHide: () => void; show: boolean }
+type ToastState = { status: boolean; text: string; color: Color }
+
+const EditTodo: FC<Props> = ({ id, onHide, show }) => {
+	const { header, description, color } = useAppSelector(selectTaskByKey(id))
 	const [fields, setFields] = useState({ header, description, color })
-	const [toast, setToast] = useState({ status: false, text: '' })
-	const dispatch = useDispatch()
+	const [toast, setToast] = useState<ToastState>({ status: false, text: '', color: 'secondary' })
+	const dispatch = useAppDispatch()
 
-	const handelChange = ({ target }) => {
+	const handelChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		setFields({ ...fields, [target.name]: target.value })
 	}
 
 	const updateTask = () => {
 		onHide()
-		setFields({ header: '', description: '' })
+		setFields({ header: '', description: '', color: 'secondary' })
 		if (fields.header.length !== 0 && fields.description.length !== 0) {
-			dispatch(todoUpdate(id, fields))
-			setToast({
-				status: true,
-				text: 'Success Update',
-				color: 'primary',
-			})
+			dispatch(taskUpdate(id, fields))
+			setToast({ status: true, text: 'Success Update', color: 'primary' })
 		} else {
-			setToast({
-				status: true,
-				text: 'Please Enter all field',
-				color: 'danger',
-			})
+			setToast({ status: true, text: 'Please Enter all field', color: 'danger' })
 		}
 	}
 
+	// @ts-ignore
 	const option = colors.map(({ bg, name }) => (
 		<option key={bg} value={bg}>
 			{name}
@@ -46,7 +43,7 @@ const EditTodo = ({ id, onHide, show }) => {
 				color={toast.color}
 				text={toast.text}
 				show={toast.status}
-				hide={() => setToast((prevState) => ({ ...prevState, status: false }))}
+				hide={() => setToast(prevState => ({ ...prevState, status: false }))}
 			/>
 			<Modal onHide={onHide} show={show} aria-labelledby='contained-modal-title-vcenter' centered>
 				<Modal.Header closeButton>
@@ -70,6 +67,7 @@ const EditTodo = ({ id, onHide, show }) => {
 							<Col xs={4}>
 								<Form.Group>
 									<Form.Label>Color</Form.Label>
+									{/* @ts-ignore */}
 									<Form.Select value={fields.color} name='color' onChange={handelChange}>
 										{option}
 									</Form.Select>
@@ -79,11 +77,11 @@ const EditTodo = ({ id, onHide, show }) => {
 						<Form.Group className='my-3'>
 							<Form.Label>Description</Form.Label>
 							<Form.Control
-								name='description'
-								value={fields.description}
-								onChange={handelChange}
-								as='textarea'
 								rows={3}
+								as='textarea'
+								name='description'
+								onChange={handelChange}
+								value={fields.description}
 								placeholder='Enter Description ...'
 							/>
 						</Form.Group>

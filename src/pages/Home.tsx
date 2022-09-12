@@ -1,14 +1,18 @@
+import React from 'react'
+import { shallowEqual } from 'react-redux'
+// UI
 import { Col, Container, Row } from 'react-bootstrap'
-import { shallowEqual, useSelector } from 'react-redux'
-import { countTask, filterTodos } from '../components/Todo/todoSlice'
+// components :
+import { countTask, filterTasks } from '../redux/reducer/todoSlice'
 import Header from '../components/Header/Header'
 import Filter from '../components/Filter/Filter'
 import Todo from '../components/Todo/Todo'
+import { useAppSelector } from '../redux'
 
 const Home = () => {
-	const tasks = useSelector(filterTodos, shallowEqual)
-	const count = useSelector(countTask)
-	const title = count > 0 ? `Remaining Todos : ${count} ` : 'All complected'
+	const tasks = useAppSelector(filterTasks, shallowEqual)
+	const count = useAppSelector(countTask)
+	const title = count > 0 ? `Remaining Tasks : ${count} ` : 'All complected'
 
 	return (
 		<>
@@ -22,7 +26,7 @@ const Home = () => {
 						</Col>
 						<Col xs={12} sm={7} md={8} lg={9} xl={10}>
 							<Row>
-								{tasks.map((id) => (
+								{tasks.map(id => (
 									<Todo key={id} id={id} />
 								))}
 							</Row>

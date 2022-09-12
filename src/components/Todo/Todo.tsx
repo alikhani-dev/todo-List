@@ -1,15 +1,19 @@
+import React, { FC, useState } from 'react'
+// styles & UI
 import { Card, Col } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
-import { selectTaskByKey } from './todoSlice'
+import styles from './style.module.scss'
+// components :
 import Actions from './Actions'
 import EditTodo from '../Modal/EditTodo'
-import styles from './style.module.css'
+import { selectTaskByKey } from '../../redux/reducer/todoSlice'
+import { useAppSelector } from '../../redux'
 
-const Todo = ({ id: key }) => {
-	const { header, description, completed, id, color } = useSelector(selectTaskByKey(key))
+type Props = { id: string }
+
+const Todo: FC<Props> = ({ id: key }) => {
+	const { header, description, completed, id, color } = useAppSelector(selectTaskByKey(key))
 	const [modalShow, setModalShow] = useState(false)
-	const handelModal = () => setModalShow((prev) => !prev)
+	const handelModal = () => setModalShow(prev => !prev)
 
 	return (
 		<>
@@ -18,7 +22,7 @@ const Todo = ({ id: key }) => {
 				<Card className={`mb-5 border-top border-5 rounded-0 border-0 ${color && `border-${color}`} shadow `}>
 					<Card.Header className={`position-relative border rounded-3 p-1 px-2 ${styles.header}`}>{header}</Card.Header>
 					<Card.Body className={`mt-3 ${styles.TODO}`}>
-						<Card.Text>{description} </Card.Text>
+						<Card.Text>{description}</Card.Text>
 					</Card.Body>
 					<Card.Footer className={`text-end border-0 bg-transparent ${styles.footer}`}>
 						<Actions id={id} completed={completed} handelModal={handelModal} />
