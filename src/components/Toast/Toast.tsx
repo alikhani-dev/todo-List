@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
+// styles & UI :
 import { Toast, ToastContainer, CloseButton } from 'react-bootstrap'
-import { Color } from '../../redux'
 import styles from './style.module.scss'
+// types :
+import { Color } from '../../redux'
 
 export type Props = { show: boolean; text: string; hide: () => void; color: Color }
 

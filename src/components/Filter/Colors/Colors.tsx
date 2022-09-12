@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
-import { Form } from 'react-bootstrap'
+// redux & types :
 import { Color, useAppDispatch } from '../../../redux'
 import { changeColor } from '../../../redux/reducer/filterSlice'
 import { colors } from '../../../redux/reducer/todoSlice'
+// styles & UI :
+import { Form } from 'react-bootstrap'
 import style from './style.module.scss'
 
 type Props = { color: Color }

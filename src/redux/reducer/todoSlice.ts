@@ -1,6 +1,8 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import { createSelector } from 'reselect'
+// get State :
 import { getColors, getStatus } from './filterSlice'
+// types :
 import { Color, RootState } from '..'
 
 export type InitStateTasks = {

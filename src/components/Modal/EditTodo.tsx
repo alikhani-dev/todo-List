@@ -3,6 +3,7 @@ import React, { useState, FC, ChangeEvent } from 'react'
 import { Col, Modal, Row, Button, Form } from 'react-bootstrap'
 // components :
 import Toast from '../Toast/Toast'
+// redux & types :
 import { colors, selectTaskByKey, taskUpdate } from '../../redux/reducer/todoSlice'
 import { Color, useAppDispatch, useAppSelector } from '../../redux'
 

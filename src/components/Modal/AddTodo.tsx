@@ -1,10 +1,11 @@
 import React, { useState, FC, ChangeEvent } from 'react'
-import { colors, taskAdded } from '../../redux/reducer/todoSlice'
 // components :
 import Toast from '../Toast/Toast'
 // styles & UI :
 import { Col, Modal, Row } from 'react-bootstrap'
 import { Button, Form } from 'react-bootstrap'
+// redux & types :
+import { colors, taskAdded } from '../../redux/reducer/todoSlice'
 import { Color, useAppDispatch } from '../../redux'
 
 type ToastState = { text: string; status: boolean; color: Color }

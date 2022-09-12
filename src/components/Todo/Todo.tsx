@@ -5,6 +5,7 @@ import styles from './style.module.scss'
 // components :
 import Actions from './Actions'
 import EditTodo from '../Modal/EditTodo'
+// redux :
 import { selectTaskByKey } from '../../redux/reducer/todoSlice'
 import { useAppSelector } from '../../redux'
 
