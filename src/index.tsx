@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 // redux state
@@ -11,9 +11,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const root = createRoot(document.getElementById('root')!)
 
 root.render(
-	<React.StrictMode>
+	<StrictMode>
 		<Provider store={store}>
 			<Home />
 		</Provider>
-	</React.StrictMode>
+	</StrictMode>
 )

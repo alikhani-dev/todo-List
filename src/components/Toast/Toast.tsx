@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 // styles & UI :
 import { Toast, ToastContainer, CloseButton } from 'react-bootstrap'
 import styles from './style.module.scss'

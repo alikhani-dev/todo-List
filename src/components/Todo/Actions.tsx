@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { FiEdit, FiTrash, FiCheckCircle, FiCircle } from 'react-icons/fi'
 // redux :
 import { useAppDispatch } from '../../redux'

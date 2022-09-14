@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 // redux & types :
 import { Color, useAppDispatch } from '../../../redux'
 import { changeColor } from '../../../redux/reducer/filterSlice'
@@ -9,7 +9,7 @@ import style from './style.module.scss'
 
 type Props = { color: Color }
 
-const ColorComponent: FC<Props> = ({ color }) => {
+const ColorFC: FC<Props> = ({ color }) => {
 	const dispatch = useAppDispatch()
 	return (
 		<div className={`mb-3 ${style.wrapper}`}>
@@ -26,7 +26,7 @@ const ColorComponent: FC<Props> = ({ color }) => {
 const Colors: FC = () => (
 	<Form>
 		{colors.map(({ bg, name }) => (
-			<ColorComponent key={name} color={bg} />
+			<ColorFC key={name} color={bg} />
 		))}
 	</Form>
 )

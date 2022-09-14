@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 // styles & UI :
 import styles from './style.module.scss'
 import { Button } from 'react-bootstrap'

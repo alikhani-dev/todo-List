@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 // redux :
+import { useAppDispatch, useAppSelector } from '../../../redux'
 import { changeStatus, getStatus, getActionsValue } from '../../../redux/reducer/filterSlice'
 // UI :
 import { Form } from 'react-bootstrap'
-import { useAppDispatch, useAppSelector } from '../../../redux'
 
 const Status: FC = () => {
 	const dispatch = useAppDispatch()

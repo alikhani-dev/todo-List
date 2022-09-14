@@ -1,4 +1,4 @@
-import React, { useState, FC, ChangeEvent } from 'react'
+import { useState, FC, ChangeEvent } from 'react'
 // UI
 import { Col, Modal, Row, Button, Form } from 'react-bootstrap'
 // components :
@@ -23,7 +23,7 @@ const EditTodo: FC<Props> = ({ id, onHide, show }) => {
 	const updateTask = () => {
 		onHide()
 		setFields({ header: '', description: '', color: 'secondary' })
-		if (fields.header.length !== 0 && fields.description.length !== 0) {
+		if (!!fields.header.length && !!fields.description.length) {
 			dispatch(taskUpdate(id, fields))
 			setToast({ status: true, text: 'Success Update', color: 'primary' })
 		} else {
@@ -31,7 +31,6 @@ const EditTodo: FC<Props> = ({ id, onHide, show }) => {
 		}
 	}
 
-	// @ts-ignore
 	const option = colors.map(({ bg, name }) => (
 		<option key={bg} value={bg}>
 			{name}
