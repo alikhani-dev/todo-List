@@ -1,4 +1,4 @@
-import React, { useState, FC, ChangeEvent } from 'react'
+import { useState, FC, ChangeEvent } from 'react'
 // components :
 import Toast from '../Toast/Toast'
 // styles & UI :
@@ -14,19 +14,17 @@ type FieldsState = { header: string; description: string; color: Color }
 export type AddModalProps = { onHide: () => void; show: boolean }
 
 const AddTodo: FC<AddModalProps> = ({ onHide, show }) => {
-	const [fields, setFields] = useState<FieldsState>({ header: '', description: '', color: 'secondary' })
-	const [toast, setToast] = useState<ToastState>({ status: false, text: '', color: 'secondary' })
+	const [fields, setFields] = useState<FieldsState>({ header: '', description: '', color: 'info' })
+	const [toast, setToast] = useState<ToastState>({ status: false, text: '', color: 'info' })
 	const dispatch = useAppDispatch()
 
-	const handelChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-		setFields({ ...fields, [target.name]: target.value })
-	}
+	const handelChange = ({ target }: ChangeEvent<any>) => setFields({ ...fields, [target.name]: target.value })
 
 	const saveTask = () => {
 		const { header, description } = fields
-		if (header.length !== 0 && description.length !== 0) {
+		if (!!header.length && !!description.length) {
 			dispatch(taskAdded(fields))
-			setFields({ header: '', description: '', color: 'secondary' })
+			setFields({ header: '', description: '', color: 'info' })
 			onHide()
 			setToast({ status: true, text: 'Success', color: 'primary' })
 		} else {
@@ -60,10 +58,10 @@ const AddTodo: FC<AddModalProps> = ({ onHide, show }) => {
 								<Form.Group>
 									<Form.Label>Header</Form.Label>
 									<Form.Control
+										type='text'
 										name='header'
 										value={fields.header}
 										onChange={handelChange}
-										type='text'
 										placeholder='Enter Header ...'
 									/>
 								</Form.Group>
@@ -71,8 +69,7 @@ const AddTodo: FC<AddModalProps> = ({ onHide, show }) => {
 							<Col xs={4}>
 								<Form.Group>
 									<Form.Label>Color</Form.Label>
-									{/* @ts-ignore */}
-									<Form.Select value={fields.color} name='color' onSelect={e => console.log(e)} onChange={handelChange}>
+									<Form.Select value={fields.color} name='color' onChange={handelChange}>
 										{option}
 									</Form.Select>
 								</Form.Group>
