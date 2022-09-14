@@ -16,7 +16,7 @@
 
 ## Tech Stack
 
-**Client:** React, Bootstrap , Redux ( Redux-toolkit )
+**Client:** React , Typescript , Bootstrap , Redux ( Redux-toolkit )
 
 ## Contact US
 
