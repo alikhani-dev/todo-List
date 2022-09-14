@@ -1,18 +1,18 @@
-import React from 'react'
+// redux :
+import { countTask, filterTasks } from '../redux/reducer/todoSlice'
 import { shallowEqual } from 'react-redux'
+import { useAppSelector } from '../redux'
 // UI
 import { Col, Container, Row } from 'react-bootstrap'
 // components :
-import { countTask, filterTasks } from '../redux/reducer/todoSlice'
 import Header from '../components/Header/Header'
 import Filter from '../components/Filter/Filter'
 import Todo from '../components/Todo/Todo'
-import { useAppSelector } from '../redux'
 
 const Home = () => {
 	const tasks = useAppSelector(filterTasks, shallowEqual)
 	const count = useAppSelector(countTask)
-	const title = count > 0 ? `Remaining Tasks : ${count} ` : 'All complected'
+	const title = count ? `Remaining Tasks : ${count}` : 'All complected'
 
 	return (
 		<>

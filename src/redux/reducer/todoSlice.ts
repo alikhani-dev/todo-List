@@ -34,11 +34,7 @@ export const filterTasks = createSelector(getColors, getStatus, selectTaskValues
 	let newTask = []
 
 	if (status === 'All') newTask = tasks
-	else
-		newTask = tasks.filter(task => {
-			const bool = status === 'Pending' ? false : true
-			return task.completed === bool
-		})
+	else newTask = tasks.filter(task => task.completed === (status === 'Pending'))
 
 	if (colors.length) newTask = newTask.filter(todo => colors.includes(todo.color))
 
