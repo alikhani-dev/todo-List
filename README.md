@@ -12,7 +12,7 @@
 - [x] Clear All Tasks
 - [x] Remove All Tasks complected
 - [x] Responsive
-- [ ] Save on localStorage
+- [x] Save on localStorage
 
 ## Tech Stack
 
