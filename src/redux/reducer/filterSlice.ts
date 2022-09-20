@@ -5,7 +5,7 @@ import { Actions, Color, RootState } from '..'
 export enum EnumActions {
 	All = 'All',
 	Pending = 'Pending',
-	Complected = 'Complected'
+	Complected = 'Complected',
 }
 
 type InitState = { colors: Color[]; status: Actions }
@@ -22,8 +22,8 @@ const reducer = createSlice({
 		},
 		changeStatus(state, action) {
 			state.status = action.payload
-		}
-	}
+		},
+	},
 })
 
 export const { changeColor, changeStatus } = reducer.actions

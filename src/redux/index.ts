@@ -16,9 +16,8 @@ const rootReducer = { tasks: tasksSlice, filter: filterSlice }
 const store = configureStore({
 	reducer: rootReducer,
 	preloadedState: { tasks: { all: getAllTask() } },
-	devTools: process.env.NODE_ENV !== 'production'
+	devTools: process.env.NODE_ENV !== 'production',
 })
-
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

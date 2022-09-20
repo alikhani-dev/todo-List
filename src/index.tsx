@@ -15,5 +15,5 @@ root.render(
 		<Provider store={store}>
 			<Home />
 		</Provider>
-	</StrictMode>
+	</StrictMode>,
 )

@@ -21,7 +21,7 @@ export const colors: { bg: Color; name: string }[] = [
 	{ bg: 'success', name: 'green' },
 	{ bg: 'warning', name: 'orange' },
 	{ bg: 'secondary', name: 'gray' },
-	{ bg: 'primary', name: 'Blue Dress' }
+	{ bg: 'primary', name: 'Blue Dress' },
 ]
 
 // get state
@@ -72,7 +72,7 @@ const reducer = createSlice({
 				state.all[id] = { ...state.all[id], ...data }
 				setTasks(state.all)
 			},
-			prepare: (id: string, data: { header: string; description: string; color: Color }) => ({ payload: { id, data } })
+			prepare: (id: string, data: { header: string; description: string; color: Color }) => ({ payload: { id, data } }),
 		},
 		taskAdded: {
 			reducer(state, action: PayloadAction<TaskAdded>) {
@@ -80,9 +80,9 @@ const reducer = createSlice({
 				state.all[task.id] = task
 				setTasks(state.all)
 			},
-			prepare: task => ({ payload: { ...task, id: nanoid(5), completed: false } })
-		}
-	}
+			prepare: task => ({ payload: { ...task, id: nanoid(5), completed: false } }),
+		},
+	},
 })
 
 export const { taskToggle, taskDeleted, taskAllComplected, taskRemoveAllComplected, taskUpdate, taskAdded } =

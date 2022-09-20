@@ -21,7 +21,11 @@ const Todo: FC<Props> = ({ id: key }) => {
 			{isOpen && <EditTodo show={isOpen} onHide={handelModal} id={id} />}
 			<Col xs={12} md={6} lg={4} xl={3}>
 				<Card className={`mb-5 border-top border-5 rounded-0 border-0 border-${color} shadow`}>
-					<Card.Header className={`position-relative border border-1 border-${color} rounded-3 p-1 px-2 ${styles.header}`}>{header}</Card.Header>
+					<Card.Header
+						className={`position-relative border border-1 border-${color} rounded-3 p-1 px-2 ${styles.header}`}
+					>
+						{header}
+					</Card.Header>
 					<Card.Body className={`mt-3 ${styles.TODO}`}>
 						<Card.Text>{description}</Card.Text>
 					</Card.Body>
